@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#EAE8EE</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="login_tv">#050505</color>
+    <color name="login_tv_2">#B3050505</color>
+    <color name="border">#CCCCCC</color>
+    <color name="tv">#AF3BEC</color>
+    <color name="re_desigen">#B38A8585</color>
+    <color name="search_tv">#B3D3CDCD</color>
+    <color name="error">#FFD10033</color>
+</resources>
