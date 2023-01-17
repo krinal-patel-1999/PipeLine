@@ -28,11 +28,11 @@ class LoginViewModel : ViewModel() {
     val LoginRepositori = UserRepository()
     val LoginResult: MutableLiveData<BaseResponse<LoginResponse>> = MutableLiveData()
 
-    private val loginError = MutableLiveData<String>()
-    val loginErrorData: LiveData<String> get() = loginError
+    val loginError = MutableLiveData<String>()
 
-    private val loginClick = MutableLiveData<Boolean>()
-    val loginClickData: MutableLiveData<Boolean> get() = loginClick
+
+
+
 
 
     val email: MutableLiveData<String> = MutableLiveData()
@@ -86,17 +86,13 @@ class LoginViewModel : ViewModel() {
         when {
             email.value.isNullOrEmpty()-> {
                 loginError.value = "Please Enter email"
-                loginClick.value = false
+
             }
             password.value.isNullOrEmpty()->{
                 loginError.value = "Please Enter Password"
-                loginClick.value = false
+
             }
-            else->{
-                loginClick.value = true
-                email.value=""
-                password.value=""
-            }
+
 
 
         }

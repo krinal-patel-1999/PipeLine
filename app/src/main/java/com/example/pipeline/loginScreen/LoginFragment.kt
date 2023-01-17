@@ -2,6 +2,7 @@ package com.example.pipeline.loginScreen
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -38,37 +39,41 @@ class LoginFragment : Fragment() {
         binding.lifecycleOwner = this
        // viewModel.setBinding(binding)
         observ()
+
+
         // binding.btnLogin.setOnClickListener {
         //
         // }
 
 
-        viewModel.loginErrorData.observe(viewLifecycleOwner, Observer {
+        viewModel.loginError.observe(viewLifecycleOwner, Observer {
            // Snackbar.make(requireContext(),binding.root,it,Snackbar.LENGTH_SHORT).show()
 
-           if (binding.etLoginEmail?.text!!.isEmpty()) {
+
+
+           if (it.toString().equals("Please Enter email")) {
 
             binding.etLogEmail.error = "Please Enter email"
             binding.etLogEmail.requestFocus()
             binding.etLoginEmail.setBackgroundResource(R.drawable.boxvalidation)
             binding.tvLoginEmail.setTextColor(Color.parseColor("#FFD10033"))
             }
-            else if (binding.etLoginPassword?.text!!.isEmpty()) {
+            else if (it.toString().equals("Please Enter Password")) {
                binding.etLogPassword.error = "Please Enter valid Password"
                binding.etLogPassword.requestFocus()
                binding.etLoginPassword.setBackgroundResource(R.drawable.boxvalidation)
                binding.tvLoginPassword.setTextColor(Color.parseColor("#FFD10033"))
            }
+            else{
+
+               viewModel.LoginUserVM(email = binding.etLoginEmail.text.toString(), password =binding.etLoginPassword.text.toString() )
+               Toast.makeText(requireContext(),"Login Successfully",Toast.LENGTH_SHORT).show()
+           }
 
         })
 
-        viewModel.loginClickData.observe(viewLifecycleOwner){
-            if (it){
 
-                viewModel.LoginUserVM(email = binding.etLoginEmail.text.toString(), password =binding.etLoginPassword.text.toString() )
-                Toast.makeText(requireContext(),"Login Successfully",Toast.LENGTH_SHORT).show()
-            }
-        }
+
 
         binding.tvClickRegister.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
@@ -100,6 +105,8 @@ class LoginFragment : Fragment() {
                 }
 
                 is BaseResponse.Error -> {
+
+
                     Toast.makeText(requireActivity(), "Login Not Succsesfully", Toast.LENGTH_SHORT).show()
 
                 }
