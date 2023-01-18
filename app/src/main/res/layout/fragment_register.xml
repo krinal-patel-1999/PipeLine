@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".register.RegisterFragment">
 
+    <data>
+        <variable
+            name="registerModel"
+            type="com.example.pipeline.register.registerViewModel"/>
+    </data>
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -134,6 +141,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/et_border"
                         android:inputType="textEmailAddress"
+                        android:text="@={registerModel.firstname}"
                         android:padding="15dp"
                         app:boxStrokeWidth="0dp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -167,7 +175,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/et_border"
-
+                        android:text="@={registerModel.lastname}"
                         android:inputType="textEmailAddress"
                         android:padding="15dp"
                         app:boxStrokeWidth="0dp" />
@@ -201,6 +209,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/et_border"
                         android:inputType="textEmailAddress"
+                        android:text="@={registerModel.email}"
                         android:padding="15dp"
                         app:boxStrokeWidth="0dp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -232,6 +241,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/et_border"
+                        android:text="@={registerModel.confirnEmail}"
                         android:padding="15dp"
                         app:boxStrokeWidth="0dp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -263,6 +273,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/et_border"
+                        android:text="@={registerModel.userName}"
                         android:padding="15dp"
                         app:boxStrokeWidth="0dp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -286,6 +297,7 @@
                     android:background="@drawable/et_border"
                     android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
                     android:hint="@string/mm_dd_yyyy"
+                    android:text="@={registerModel.dateOfBirth}"
                     android:inputType="textEmailAddress"
                     android:padding="15dp"
                     app:boxStrokeWidth="0dp"
@@ -311,6 +323,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/et_border"
+                    android:text="@={registerModel.gender}"
                     android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
                     android:hint="@string/select_gender"
                     android:padding="15dp"
@@ -347,6 +360,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/et_border"
+                        android:text="@={registerModel.password}"
                         android:padding="15dp"
                         app:boxStrokeWidth="0dp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -379,6 +393,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/et_border"
+                        android:text="@={registerModel.confirmPassword}"
                         android:padding="15dp"
                         app:boxStrokeWidth="0dp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -418,6 +433,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="17sp"
+                    android:onClick="@={()->registerModel.createRegistrationValidation()}"
                     app:layout_constraintEnd_toEndOf="@id/gu_right"
                     app:layout_constraintStart_toStartOf="@id/gu_left"
                     app:layout_constraintTop_toBottomOf="@+id/checkbox_signupforthenewsletter" />

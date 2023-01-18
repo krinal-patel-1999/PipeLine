@@ -50,25 +50,28 @@ class LoginFragment : Fragment() {
            // Snackbar.make(requireContext(),binding.root,it,Snackbar.LENGTH_SHORT).show()
 
 
+                if (it.toString().equals("Valid response")){
+                    Toast.makeText(requireActivity(), "LoginSucssessfull", Toast.LENGTH_SHORT).show()
+                    viewModel.LoginUserVM(email = binding.etLoginEmail.text.toString(), password =binding.etLoginPassword.text.toString() )
 
-           if (it.toString().equals("Please Enter email")) {
+            }else {
 
-            binding.etLogEmail.error = "Please Enter email"
-            binding.etLogEmail.requestFocus()
-            binding.etLoginEmail.setBackgroundResource(R.drawable.boxvalidation)
-            binding.tvLoginEmail.setTextColor(Color.parseColor("#FFD10033"))
-            }
-            else if (it.toString().equals("Please Enter Password")) {
-               binding.etLogPassword.error = "Please Enter valid Password"
-               binding.etLogPassword.requestFocus()
-               binding.etLoginPassword.setBackgroundResource(R.drawable.boxvalidation)
-               binding.tvLoginPassword.setTextColor(Color.parseColor("#FFD10033"))
-           }
-            else{
+                    if (it.toString().equals("Please Enter email")) {
 
-               viewModel.LoginUserVM(email = binding.etLoginEmail.text.toString(), password =binding.etLoginPassword.text.toString() )
-               Toast.makeText(requireContext(),"Login Successfully",Toast.LENGTH_SHORT).show()
-           }
+                        binding.etLogEmail.error = "Please Enter email"
+                        binding.etLogEmail.requestFocus()
+                        binding.etLoginEmail.setBackgroundResource(R.drawable.boxvalidation)
+                        binding.tvLoginEmail.setTextColor(Color.parseColor("#FFD10033"))
+
+                    } else if (it.toString().equals("Please Enter Password")) {
+                        binding.etLogPassword.error = "Please Enter valid Password"
+                        binding.etLogPassword.requestFocus()
+                        binding.etLoginPassword.setBackgroundResource(R.drawable.boxvalidation)
+                        binding.tvLoginPassword.setTextColor(Color.parseColor("#FFD10033"))
+                    }
+                }
+
+
 
         })
 

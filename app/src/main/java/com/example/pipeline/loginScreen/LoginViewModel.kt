@@ -31,24 +31,17 @@ class LoginViewModel : ViewModel() {
     val loginError = MutableLiveData<String>()
 
 
-
-
-
-
     val email: MutableLiveData<String> = MutableLiveData()
     val password: MutableLiveData<String> = MutableLiveData()
 
     //var context:Context = get
 
     private var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    //private var loginValidation = MutableLiveData<String>()
 
-
-    private var loginValidation = MutableLiveData<String>()
-
-    //    fun setBinding(binding: FragmentLoginBinding){
-//        loginBinding = binding
-//    }
-    fun getLoginResult(): LiveData<String> = loginValidation
+    // fun setBinding(binding: FragmentLoginBinding){
+//    loginBinding = binding
+//    } fun getLoginResult(): LiveData<String> = loginValidation
 
 
     fun LoginUserVM(email: String, password: String) {
@@ -84,15 +77,17 @@ class LoginViewModel : ViewModel() {
 
 
         when {
-            email.value.isNullOrEmpty()-> {
+            email.value.isNullOrEmpty() -> {
                 loginError.value = "Please Enter email"
 
             }
-            password.value.isNullOrEmpty()->{
+            password.value.isNullOrEmpty() -> {
                 loginError.value = "Please Enter Password"
 
             }
-
+            email.value!!.isNotEmpty() && password.value!!.isNotEmpty() -> {
+                loginError.value = "Valid response"
+            }
 
 
         }

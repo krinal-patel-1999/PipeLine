@@ -2,6 +2,7 @@ package com.example.pipeline.register
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,16 +11,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.pipeline.R
 import com.example.pipeline.`interface`.Backpased
 import com.example.pipeline.databinding.FragmentRegisterBinding
+import com.example.pipeline.loginScreen.LoginViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.*
 
 
 class RegisterFragment : Fragment() {
     lateinit var binding: FragmentRegisterBinding
+    lateinit var viewModelreg: registerViewModel
 
     val myClaender = Calendar.getInstance()
 
@@ -38,6 +42,10 @@ class RegisterFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false)
 
+        viewModelreg = ViewModelProvider(requireActivity()).get(registerViewModel::class.java)
+        binding.registerModel = viewModelreg
+        binding.lifecycleOwner = this
+
         binding.toolbarUseredit.tvProfile.text = "Registration"
         binding.toolbarUseredit.imgArrow.setOnClickListener {
             findNavController().popBackStack()
@@ -49,6 +57,29 @@ class RegisterFragment : Fragment() {
         binding.etRegGender.setOnClickListener {
             showdilog()
         }
+
+
+
+        viewModelreg.registrationError.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+
+            if (it.toString().equals("Valid response")){
+                Toast.makeText(requireActivity(), "LoginSucssessfull", Toast.LENGTH_SHORT).show()
+
+
+            }else {
+
+                if (it.toString().equals("Please Enter firstname")) {
+
+                    binding.etRegFirstname.error = "Please Enter Firstname"
+                    binding.etRegFirstname.requestFocus()
+                    binding.etRegFirstname.setBackgroundResource(R.drawable.boxvalidation)
+                    binding.tvRegFirstname.setTextColor(Color.parseColor("#FFD10033"))
+
+                }
+            }
+
+        })
+
 
         return binding.root
     }
